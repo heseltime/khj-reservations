@@ -1,0 +1,31 @@
+﻿@page "/"
+@inject IConfiguration Config
+
+<PageTitle>Home</PageTitle>
+
+<h1>Welcome, thank you for making a reservation!</h1>
+
+<h2>It has surely been duly noted ...</h2>
+
+<p>... Or if not yet, then just click around this website to read more about our view on reservations in KHG. <b>Maybe you don't need a reservation</b>.</p>
+    
+<p><i>Official and current reservations policy: please refer to the bylaws, German "Heimordnung," which is the output of the KHG general assembly and therefor the democratic process by which any reservation system is ultimately decided on, of course.</i></p>
+
+<!-- Other ideas: sign as KHJ, not just Jack, and even better: KHJ + Mgmt + Pastoral photos with a You made a reservation! banner. A very soft go f.urself? In love. -->
+
+<!-- More ideas: photo or even video series of the different locations that could reserved and scenarios that could arise. Can I reserve tv room for a peep show? Cf Bettina. Can I reserve gym for fight club? What about the grill for my sausages and only mine? -->
+
+<!--<p class="h4">
+    Default Connection String: @defaultConnection
+</p>-->
+
+@code {
+
+    private string defaultConnection = "";
+
+    protected override void OnInitialized()
+    {
+        defaultConnection = Config.GetConnectionString("Default") ?? "unknown";
+    }
+
+}

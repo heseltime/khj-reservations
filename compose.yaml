@@ -1,0 +1,6 @@
+﻿services:
+  reservations:
+    image: reservations
+    build:
+      context: .
+      dockerfile: Reservations/Dockerfile

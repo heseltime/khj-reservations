@@ -10,11 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read  # Required for actions/checkout
+      contents: read # Required for actions/checkout
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
@@ -26,10 +25,6 @@ jobs:
 
       - name: Publish the app
         run: dotnet publish -c Release -o publish
-
-      # Debug: List the contents of the publish folder
-      - name: List published files for debugging
-        run: ls -la publish
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -44,8 +39,8 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write  # Required for requesting the JWT
-      contents: read   # Required for actions/checkout
+      id-token: write # Required for requesting the JWT
+      contents: read  # Required for actions/checkout
 
     steps:
       - name: Download artifact from build job
@@ -53,10 +48,6 @@ jobs:
         with:
           name: .net-app
           path: .
-
-      # Debug: List the downloaded files to verify the artifact is present
-      - name: List downloaded files for debugging
-        run: ls -la .
 
       - name: Login to Azure
         uses: azure/login@v2
